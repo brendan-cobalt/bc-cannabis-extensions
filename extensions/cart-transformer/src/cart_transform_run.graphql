@@ -1,0 +1,27 @@
+query CartTransformRunInput {
+  cart {
+    lines {
+      id
+      quantity
+      cdf: attribute(key: "cdf") {
+        value
+      }
+      consumerUnits: attribute(key: "consumer_units") {
+        value
+      }
+      caseSize: attribute(key: "case_size") {
+        value
+      }
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          id
+          sku
+          product {
+            productType
+          }
+        }
+      }
+    }
+  }
+}

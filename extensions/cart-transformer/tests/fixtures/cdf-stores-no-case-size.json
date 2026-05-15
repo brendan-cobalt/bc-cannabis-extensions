@@ -1,0 +1,59 @@
+{
+  "payload": {
+    "export": "cart-transform-run",
+    "target": "cart.transform.run",
+    "input": {
+      "cart": {
+        "lines": [
+          {
+            "id": "gid://shopify/CartLine/fee-1",
+            "quantity": 1,
+            "cdf": null,
+            "consumerUnits": null,
+            "caseSize": null,
+            "merchandise": {
+              "__typename": "ProductVariant",
+              "id": "gid://shopify/ProductVariant/31143467976524",
+              "sku": "CD005",
+              "product": { "productType": "Fee" }
+            }
+          },
+          {
+            "id": "gid://shopify/CartLine/merch-1",
+            "quantity": 2,
+            "cdf": { "value": "CD005" },
+            "consumerUnits": { "value": "1" },
+            "caseSize": null,
+            "merchandise": {
+              "__typename": "ProductVariant",
+              "id": "gid://shopify/ProductVariant/55555555555555",
+              "sku": "RETAIL-SKU-1",
+              "product": { "productType": "Cannabis" }
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "operations": [
+        {
+          "lineExpand": {
+            "cartLineId": "gid://shopify/CartLine/fee-1",
+            "expandedCartItems": [
+              {
+                "merchandiseId": "gid://shopify/ProductVariant/31143467976524",
+                "quantity": 2,
+                "attributes": [
+                  { "key": "id", "value": "55555555555555" },
+                  { "key": "sku", "value": "RETAIL-SKU-1" },
+                  { "key": "_legacy_product_as_fee_title", "value": "Container deposit fee ($0.05)" },
+                  { "key": "_legacy_product_as_fee_description", "value": "A container deposit fee of $0.05 applies to 2 item(s) in this order." }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
