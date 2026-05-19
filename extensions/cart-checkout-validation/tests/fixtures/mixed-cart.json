@@ -1,0 +1,84 @@
+{
+  "payload": {
+    "export": "cart-validations-generate-run",
+    "target": "cart.validations.generate.run",
+    "input": {
+      "cart": {
+        "cost": { "subtotalAmount": { "amount": "100.00" } },
+        "buyerIdentity": { "purchasingCompany": null },
+        "lines": [
+          {
+            "id": "gid://shopify/CartLine/1",
+            "quantity": 5,
+            "b2bOrderLimit": null,
+            "gramEquivalency": null,
+            "merchandise": {
+              "__typename": "ProductVariant",
+              "id": "gid://shopify/ProductVariant/1000000000001",
+              "sku": "NO-LIMIT-SKU",
+              "b2bOrderLimitMetafield": null,
+              "gramEquivalencyMetafield": null
+            }
+          },
+          {
+            "id": "gid://shopify/CartLine/2",
+            "quantity": 12,
+            "b2bOrderLimit": { "value": "5" },
+            "gramEquivalency": null,
+            "merchandise": {
+              "__typename": "ProductVariant",
+              "id": "gid://shopify/ProductVariant/2000000000002",
+              "sku": "CAPPED-A",
+              "b2bOrderLimitMetafield": null,
+              "gramEquivalencyMetafield": null
+            }
+          },
+          {
+            "id": "gid://shopify/CartLine/3",
+            "quantity": 2,
+            "b2bOrderLimit": { "value": "3" },
+            "gramEquivalency": null,
+            "merchandise": {
+              "__typename": "ProductVariant",
+              "id": "gid://shopify/ProductVariant/3000000000003",
+              "sku": "WITHIN-LIMIT",
+              "b2bOrderLimitMetafield": null,
+              "gramEquivalencyMetafield": null
+            }
+          },
+          {
+            "id": "gid://shopify/CartLine/4",
+            "quantity": 100,
+            "b2bOrderLimit": { "value": "20" },
+            "gramEquivalency": null,
+            "merchandise": {
+              "__typename": "ProductVariant",
+              "id": "gid://shopify/ProductVariant/4000000000004",
+              "sku": "CAPPED-B",
+              "b2bOrderLimitMetafield": null,
+              "gramEquivalencyMetafield": null
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "operations": [
+        {
+          "validationAdd": {
+            "errors": [
+              {
+                "message": "Order limit exceeded (SKU CAPPED-A): this product is limited to 5 per order. Please reduce the quantity to continue.",
+                "target": "$.cart.lines[1].quantity"
+              },
+              {
+                "message": "Order limit exceeded (SKU CAPPED-B): this product is limited to 20 per order. Please reduce the quantity to continue.",
+                "target": "$.cart.lines[3].quantity"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

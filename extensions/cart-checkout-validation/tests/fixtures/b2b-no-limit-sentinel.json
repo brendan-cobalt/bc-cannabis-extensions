@@ -1,0 +1,32 @@
+{
+  "payload": {
+    "export": "cart-validations-generate-run",
+    "target": "cart.validations.generate.run",
+    "input": {
+      "cart": {
+        "cost": { "subtotalAmount": { "amount": "100.00" } },
+        "buyerIdentity": { "purchasingCompany": null },
+        "lines": [
+          {
+            "id": "gid://shopify/CartLine/1",
+            "quantity": 9999,
+            "b2bOrderLimit": { "value": "no_limit" },
+            "gramEquivalency": null,
+            "merchandise": {
+              "__typename": "ProductVariant",
+              "id": "gid://shopify/ProductVariant/1000000000001",
+              "sku": "UNLIMITED-SKU",
+              "b2bOrderLimitMetafield": null,
+              "gramEquivalencyMetafield": null
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "operations": [
+        { "validationAdd": { "errors": [] } }
+      ]
+    }
+  }
+}

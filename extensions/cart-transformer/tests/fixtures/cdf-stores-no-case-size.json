@@ -43,6 +43,11 @@
               {
                 "merchandiseId": "gid://shopify/ProductVariant/31143467976524",
                 "quantity": 2,
+                "price": {
+                  "adjustment": {
+                    "fixedPricePerUnit": { "amount": "0.05" }
+                  }
+                },
                 "attributes": [
                   { "key": "id", "value": "55555555555555" },
                   { "key": "sku", "value": "RETAIL-SKU-1" },

@@ -47,6 +47,11 @@
               {
                 "merchandiseId": "gid://shopify/ProductVariant/31143467976524",
                 "quantity": 12,
+                "price": {
+                  "adjustment": {
+                    "fixedPricePerUnit": { "amount": "0.10" }
+                  }
+                },
                 "attributes": [
                   { "key": "id", "value": "39658715154252" },
                   { "key": "sku", "value": "1060033" },

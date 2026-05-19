@@ -1,0 +1,41 @@
+{
+  "payload": {
+    "export": "cart-validations-generate-run",
+    "target": "cart.validations.generate.run",
+    "input": {
+      "cart": {
+        "cost": { "subtotalAmount": { "amount": "100.00" } },
+        "buyerIdentity": { "purchasingCompany": null },
+        "lines": [
+          {
+            "id": "gid://shopify/CartLine/1",
+            "quantity": 8,
+            "b2bOrderLimit": { "value": "5" },
+            "gramEquivalency": null,
+            "merchandise": {
+              "__typename": "ProductVariant",
+              "id": "gid://shopify/ProductVariant/1000000000001",
+              "sku": "ATTR-FALLBACK",
+              "b2bOrderLimitMetafield": { "value": "" },
+              "gramEquivalencyMetafield": null
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "operations": [
+        {
+          "validationAdd": {
+            "errors": [
+              {
+                "message": "Order limit exceeded (SKU ATTR-FALLBACK): this product is limited to 5 per order. Please reduce the quantity to continue.",
+                "target": "$.cart.lines[0].quantity"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

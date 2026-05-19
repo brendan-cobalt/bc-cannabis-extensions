@@ -1,0 +1,41 @@
+{
+  "payload": {
+    "export": "cart-validations-generate-run",
+    "target": "cart.validations.generate.run",
+    "input": {
+      "cart": {
+        "cost": { "subtotalAmount": { "amount": "100.00" } },
+        "buyerIdentity": { "purchasingCompany": null },
+        "lines": [
+          {
+            "id": "gid://shopify/CartLine/1",
+            "quantity": 25,
+            "b2bOrderLimit": null,
+            "gramEquivalency": null,
+            "merchandise": {
+              "__typename": "ProductVariant",
+              "id": "gid://shopify/ProductVariant/1000000000001",
+              "sku": "META-CAPPED",
+              "b2bOrderLimitMetafield": { "value": "10" },
+              "gramEquivalencyMetafield": null
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "operations": [
+        {
+          "validationAdd": {
+            "errors": [
+              {
+                "message": "Order limit exceeded (SKU META-CAPPED): this product is limited to 10 per order. Please reduce the quantity to continue.",
+                "target": "$.cart.lines[0].quantity"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

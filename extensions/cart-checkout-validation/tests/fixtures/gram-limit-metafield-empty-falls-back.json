@@ -1,0 +1,41 @@
+{
+  "payload": {
+    "export": "cart-validations-generate-run",
+    "target": "cart.validations.generate.run",
+    "input": {
+      "cart": {
+        "cost": { "subtotalAmount": { "amount": "60.00" } },
+        "buyerIdentity": { "purchasingCompany": null },
+        "lines": [
+          {
+            "id": "gid://shopify/CartLine/1",
+            "quantity": 7,
+            "b2bOrderLimit": null,
+            "gramEquivalency": { "value": "5.0" },
+            "merchandise": {
+              "__typename": "ProductVariant",
+              "id": "gid://shopify/ProductVariant/1000000000001",
+              "sku": "EMPTY-META-FALLBACK",
+              "b2bOrderLimitMetafield": null,
+              "gramEquivalencyMetafield": { "value": "" }
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "operations": [
+        {
+          "validationAdd": {
+            "errors": [
+              {
+                "message": "BC purchase limit exceeded: cannabis orders are limited to 30g of dried-cannabis equivalent per transaction. Your cart totals 35.0g. Please remove items to continue.",
+                "target": "$.cart"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

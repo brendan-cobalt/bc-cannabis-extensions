@@ -1,0 +1,54 @@
+{
+  "payload": {
+    "export": "cart-validations-generate-run",
+    "target": "cart.validations.generate.run",
+    "input": {
+      "cart": {
+        "cost": { "subtotalAmount": { "amount": "120.00" } },
+        "buyerIdentity": { "purchasingCompany": null },
+        "lines": [
+          {
+            "id": "gid://shopify/CartLine/1",
+            "quantity": 4,
+            "b2bOrderLimit": null,
+            "gramEquivalency": { "value": "5.0" },
+            "merchandise": {
+              "__typename": "ProductVariant",
+              "id": "gid://shopify/ProductVariant/1000000000001",
+              "sku": "BEV-A",
+              "b2bOrderLimitMetafield": null,
+              "gramEquivalencyMetafield": null
+            }
+          },
+          {
+            "id": "gid://shopify/CartLine/2",
+            "quantity": 5,
+            "b2bOrderLimit": null,
+            "gramEquivalency": { "value": "2.5" },
+            "merchandise": {
+              "__typename": "ProductVariant",
+              "id": "gid://shopify/ProductVariant/2000000000002",
+              "sku": "EDI-B",
+              "b2bOrderLimitMetafield": null,
+              "gramEquivalencyMetafield": null
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "operations": [
+        {
+          "validationAdd": {
+            "errors": [
+              {
+                "message": "BC purchase limit exceeded: cannabis orders are limited to 30g of dried-cannabis equivalent per transaction. Your cart totals 32.5g. Please remove items to continue.",
+                "target": "$.cart"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

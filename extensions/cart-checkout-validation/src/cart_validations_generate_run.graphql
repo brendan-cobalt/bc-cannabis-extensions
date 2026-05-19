@@ -1,0 +1,39 @@
+query CartValidationsGenerateRunInput {
+  cart {
+    cost {
+      subtotalAmount {
+        amount
+      }
+    }
+    buyerIdentity {
+      purchasingCompany {
+        company {
+          id
+        }
+      }
+    }
+    lines {
+      id
+      quantity
+      b2bOrderLimit: attribute(key: "b2b_order_limit") {
+        value
+      }
+      gramEquivalency: attribute(key: "gram_equivalency") {
+        value
+      }
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          id
+          sku
+          b2bOrderLimitMetafield: metafield(namespace: "details", key: "b2b_order_limit") {
+            value
+          }
+          gramEquivalencyMetafield: metafield(namespace: "details", key: "gram_equivalency") {
+            value
+          }
+        }
+      }
+    }
+  }
+}
