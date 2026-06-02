@@ -87,13 +87,23 @@ export function cartTransformRun(input) {
       const merchVariant = merchLine.merchandise;
       const feeVariant = feeLine.merchandise;
 
+      // `lineExpand` multiplies the expanded quantity by the parent fee line's
+      // existing cart quantity (Shopify expand semantics). Divide it back out so
+      // the final charged total lands on `requiredQty` rather than
+      // `requiredQty × feeLine.quantity`. The theme adds the fee line with
+      // quantity === case_size, so requiredQty (merchQty × consumer_units ×
+      // case_size) divides evenly; Math.round guards against any rounding drift.
+      const feeParentQty = feeLine.quantity > 0 ? feeLine.quantity : 1;
+      const expandedQty = Math.round(requiredQty / feeParentQty);
+      if (expandedQty <= 0) continue;
+
       operations.push({
         lineExpand: {
           cartLineId: feeLine.id,
           expandedCartItems: [
             {
               merchandiseId: feeVariant.id,
-              quantity: requiredQty,
+              quantity: expandedQty,
               price: {
                 adjustment: {
                   fixedPricePerUnit: {
