@@ -6,9 +6,9 @@ query CartValidationsGenerateRunInput {
       }
     }
     buyerIdentity {
-      purchasingCompany {
-        company {
-          id
+      customer {
+        licenceNumber: metafield(namespace: "licence", key: "active") {
+          value
         }
       }
     }

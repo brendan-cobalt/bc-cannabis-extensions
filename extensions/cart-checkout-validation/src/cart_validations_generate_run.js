@@ -82,7 +82,7 @@ export function cartValidationsGenerateRun(input) {
  * @returns {boolean}
  */
 function isB2bCart(input) {
-  return input.cart.buyerIdentity?.purchasingCompany != null;
+  return input.cart.buyerIdentity?.customer?.licenceNumber != null;
 }
 
 /**
